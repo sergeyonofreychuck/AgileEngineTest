@@ -17,7 +17,7 @@ public class ImageItemPojo {
     private User user;
 
     @SerializedName("image_url")
-    private User imageUrl;
+    private String imageUrl;
 
 
     public String getName() {
@@ -32,7 +32,7 @@ public class ImageItemPojo {
         return user;
     }
 
-    public User getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 

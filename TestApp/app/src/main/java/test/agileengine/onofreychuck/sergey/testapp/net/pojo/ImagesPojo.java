@@ -8,9 +8,9 @@ import com.google.gson.annotations.SerializedName;
 public class ImagesPojo {
 
     @SerializedName("photos")
-    private ImagesPojo[] photos;
+    private ImageItemPojo[] photos;
 
-    public ImagesPojo[] getPhotos() {
+    public ImageItemPojo[] getPhotos() {
         return photos;
     }
 }

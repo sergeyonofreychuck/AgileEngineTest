@@ -11,6 +11,6 @@ import test.agileengine.onofreychuck.sergey.testapp.net.pojo.ImagesPojo;
 public interface ImageGalaryApi {
 
     @GET("photos?feature=popular&consumer_key=wB4ozJxTijCwNuggJvPGtBGCRqaZVcF6jsrzUadF")
-    Observable<ImagesPojo> getOffer(@Query("page") int page);
+    Observable<ImagesPojo> getPhotos(@Query("page") int page);
 
 }
