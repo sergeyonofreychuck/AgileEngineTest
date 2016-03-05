@@ -23,14 +23,18 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     private List<VisualItem> mData;
     private Context mContext;
+    private ImageClickListener mClickListener;
 
-    public GalleryAdapter(Context context) {
+    public GalleryAdapter(Context context, ImageClickListener clickListener) {
         if (context == null) {
             throw new IllegalArgumentException("context");
+        }
+        if (clickListener == null) {
         }
 
         mContext = context;
         mData = new ArrayList<>();
+        mClickListener = clickListener;
     }
 
     public List<VisualItem> getItemsCopy() {
@@ -51,10 +55,14 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        ImageItemPojo leftImage = mData.get(position).leftImage;
+
         Glide
                 .with(mContext)
-                .load(mData.get(position).leftImage.getImageUrl())
+                .load(leftImage.getImageUrl())
                 .into(holder.leftImage);
+
+        holder.leftImage.setOnClickListener(v -> mClickListener.click(leftImage));
 
         ImageItemPojo rightImage = mData.get(position).rightImage;
         if (rightImage != null) {
@@ -62,6 +70,10 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
                     .with(mContext)
                     .load(rightImage.getImageUrl())
                     .into(holder.rightImage);
+
+            holder.rightImage.setOnClickListener(v -> mClickListener.click(rightImage));
+        } else {
+            holder.rightImage.setOnClickListener(null);
         }
     }
 
