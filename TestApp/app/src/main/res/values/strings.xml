@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TestApp</string>
+
+    <string name="imageNameFormat">Name: %s</string>
+    <string name="userNameFormat">User: %1$s %2$s</string>
+    <string name="cameraNameFormat">Camera: %s</string>
+    <string name="share">Share</string>
 </resources>

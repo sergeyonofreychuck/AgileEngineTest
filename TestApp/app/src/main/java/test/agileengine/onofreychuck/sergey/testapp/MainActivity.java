@@ -8,6 +8,10 @@ import android.util.Log;
 
 import test.agileengine.onofreychuck.sergey.testapp.net.pojo.ImageItemPojo;
 
+/**
+ * Created by Onofreychuck Sergey on 3/5/16.
+ */
+
 public class MainActivity extends AppCompatActivity implements ImageClickListener {
 
     private static final String TAG = "MainActivity";

@@ -6,7 +6,7 @@ import rx.Observable;
 import test.agileengine.onofreychuck.sergey.testapp.net.pojo.ImagesPojo;
 
 /**
- * Created by sergey on 3/5/16.
+ * Created by Onofreychuck Sergey on 3/5/16.
  */
 public interface ImageGalaryApi {
 

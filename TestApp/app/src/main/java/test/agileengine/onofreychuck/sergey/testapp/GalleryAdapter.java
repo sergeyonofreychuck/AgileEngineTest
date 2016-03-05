@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import test.agileengine.onofreychuck.sergey.testapp.net.pojo.ImageItemPojo;
 
 /**
- * Created by sergey on 3/5/16.
+ * Created by Onofreychuck Sergey on 3/5/16.
  */
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
 
@@ -30,6 +30,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
             throw new IllegalArgumentException("context");
         }
         if (clickListener == null) {
+            throw new IllegalArgumentException("click listener");
         }
 
         mContext = context;

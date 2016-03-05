@@ -22,7 +22,7 @@ import test.agileengine.onofreychuck.sergey.testapp.net.ApiServiceFactory;
 import test.agileengine.onofreychuck.sergey.testapp.net.pojo.ImagesPojo;
 
 /**
- * Created by sergey on 3/5/16.
+ * Created by Onofreychuck Sergey on 3/5/16.
  */
 public class GalleryFragment extends Fragment {
 
@@ -33,6 +33,8 @@ public class GalleryFragment extends Fragment {
 
     private Context mContext;
     private ImageClickListener mImageClickListener;
+    private LinearLayoutManager mLayoutManager;
+    private boolean mLoading;
 
     @Bind(R.id.gallery)
     RecyclerView mRecyclerView;
@@ -46,11 +48,26 @@ public class GalleryFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         mAdapter = new GalleryAdapter(mContext, mImageClickListener);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mLayoutManager = new LinearLayoutManager(mContext);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        loadNextPage();
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0) {
+                    if (!mLoading) {
+                        if ((mLayoutManager.getChildCount() + mLayoutManager.findFirstVisibleItemPosition())
+                                >= mLayoutManager.getItemCount()) {
+                            mLoading = true;
+                            loadNextPage();
+                        }
+                    }
+                }
+            }
+        });
 
+        loadNextPage();
         return rootView;
     }
 
@@ -98,9 +115,9 @@ public class GalleryFragment extends Fragment {
                     mAdapter.updateData(items);
                     mAdapter.notifyDataSetChanged();
                     mCurrentPage++;
+                    mLoading = false;
                 }, th -> {
                     Log.e(TAG, "error loading page " + mCurrentPage, th);
-
                 });
     }
 
